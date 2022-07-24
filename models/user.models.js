@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 const { isEmail } = require('validator')
+const bcrypt = require('bcrypt')
 const userShema = new mongoose.Schema(
   {
     psuedo: {
@@ -25,6 +26,10 @@ const userShema = new mongoose.Schema(
       maxlength: 100,
       unique: true,
     },
+    picture: {
+      type: String,
+      default: './uploads/profil/randomn-user.png',
+    },
     bio: {
       type: String,
       maxlength: 1024,
@@ -46,6 +51,12 @@ const userShema = new mongoose.Schema(
     timestamps: true,
   }
 )
+//play function befor save into display : block
 
+userShema.pre('save', async function (next) {
+  const salt = await bcrypt.genSalt()
+  this.password = await bcrypt.hash(this.password, salt)
+  next()
+})
 const UserModel = mongoose.model('user', userShema)
 module.exports = UserModel
