@@ -1,5 +1,6 @@
 const express = require('express')
 const userRoutes = require('./routes/user.routes')
+const postRoutes = require('./routes/post.routes')
 const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
 require('dotenv').config({ path: './config/.env' })
@@ -20,6 +21,7 @@ app.get('/jwtid', requireAuth, (req, res) => {
 
 // les reoutes
 app.use('/api/user', userRoutes)
+app.use('/api/post', postRoutes)
 
 //le serveur
 app.listen(process.env.PORT, () => {
