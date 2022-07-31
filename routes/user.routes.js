@@ -4,6 +4,8 @@ const authController = require('../controllers/auth.controller')
 const userController = require('../controllers/user.controller')
 //auth
 router.post('/register', authController.singUp)
+router.post('/login', authController.signIn)
+router.get('/logout', authController.logout)
 
 // user display : 'block'
 

@@ -10,7 +10,7 @@ module.exports.getAllUsers = async (req, res) => {
 user: String
 
 module.exports.userInfo = async (req, res) => {
-  console.log(req.params)
+  // console.log(req.params)
   if (!ObjectID.isValid(req.params.id))
     return res.status(400).send('ID Unknown : ' + req.params.id)
   UserModel.findById(req.params.id, (err, docs) => {
@@ -67,7 +67,7 @@ module.exports.follow = async (req, res) => {
       { new: true, upsert: true },
       (err, docs) => {
         if (!err) res.send(docs)
-        else return res.status(400).jsos(err)
+        else return res.status(400).json(err)
       }
     ).clone()
     // add to following list
@@ -77,7 +77,7 @@ module.exports.follow = async (req, res) => {
       { new: true, upsert: true },
       (err, docs) => {
         // if (!err) res.status(201).json(docs)
-        if (err) return res.status(400).jsos(err)
+        if (err) return res.status(400).json(err)
       }
     ).clone()
   } catch (err) {
@@ -86,9 +86,32 @@ module.exports.follow = async (req, res) => {
 }
 
 module.exports.unfollow = async (req, res) => {
-  if (!ObjectID.isValid(req.params.id))
+  if (
+    !ObjectID.isValid(req.params.id) ||
+    !ObjectID.isValid(req.body.idTounFollow)
+  )
     return res.status(400).send('ID Unknown : ' + req.params.id)
   try {
+    // remove from the follower list
+    await UserModel.findByIdAndUpdate(
+      req.params.id,
+      { $pull: { following: req.body.idTounFollow } },
+      { new: true, upsert: true },
+      (err, docs) => {
+        if (!err) res.send(docs)
+        else return res.status(400).jsos(err)
+      }
+    ).clone()
+    // remove from following list
+    await UserModel.findByIdAndUpdate(
+      req.body.idTounFollow,
+      { $pull: { followers: req.params.id } },
+      { new: true, upsert: true },
+      (err, docs) => {
+        // if (!err) res.status(201).json(docs)
+        if (err) return res.status(400).jsos(err)
+      }
+    ).clone()
   } catch (err) {
     return res.status(500).json({ message: err })
   }

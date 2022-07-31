@@ -9,4 +9,6 @@ npm install --save nodemon@2.0.16
 npm install --save validator@13.7.0
 
 npm i -s bcrypt
+npm i -s jsonwebtoken
+npm i -s cookie-parser
 //mongodb+srv://abdellah:blackroci24@likididb.lu9fpuu.mongodb.net/test
