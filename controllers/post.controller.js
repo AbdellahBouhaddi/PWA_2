@@ -56,9 +56,93 @@ module.exports.deletePost = (req, res) => {
 module.exports.likePost = async (req, res) => {
   if (!ObjectID.isValid(req.params.id))
     return res.status(400).send('ID unknown :' + req.params.id)
+
+  try {
+    await PostModel.findByIdAndUpdate(
+      req.params.id,
+      { $addToSet: { likers: req.body.id } },
+      { new: true },
+      (err, docs) => {
+        if (err) res.status(400).send(err)
+      }
+    ).clone()
+
+    await UserModel.findByIdAndUpdate(
+      req.body.id,
+      { $addToSet: { likes: req.params.id } },
+      { new: true },
+      (err, docs) => {
+        if (!err) res.send(docs)
+        else res.status(400).send(err)
+      }
+    ).clone()
+  } catch (err) {
+    return res.status(500).json(err)
+  }
 }
 
 module.exports.unlikePost = async (req, res) => {
+  if (!ObjectID.isValid(req.params.id))
+    return res.status(400).send('ID unknown :' + req.params.id)
+
+  try {
+    await PostModel.findByIdAndUpdate(
+      req.params.id,
+      { $pull: { likers: req.body.id } },
+      { new: true },
+      (err, docs) => {
+        if (err) res.status(400).send(err)
+      }
+    ).clone()
+
+    await UserModel.findByIdAndUpdate(
+      req.body.id,
+      { $pull: { likes: req.params.id } },
+      { new: true },
+      (err, docs) => {
+        if (!err) res.send(docs)
+        else res.status(400).send(err)
+      }
+    ).clone()
+  } catch (err) {
+    return res.status(500).json(err)
+  }
+}
+
+module.exports.commentPost = (req, res) => {
+  if (!ObjectID.isValid(req.params.id))
+    return res.status(400).send('ID unknown :' + req.params.id)
+
+  try {
+    return PostModel.findByIdAndUpdate(
+      req.params.id,
+      {
+        $push: {
+          comments: {
+            commenterId: req.body.commenterID,
+            commenterPsuedo: req.body.commenterPsuedo,
+            text: req.body.text,
+            timestamp: new Date().getTime(),
+          },
+        },
+      },
+      { new: true },
+      (err, docs) => {
+        if (!err) return res.send(docs)
+        else return res.status(400).send(err)
+      }
+    )
+  } catch (err) {
+    return res.status(500).json(err)
+  }
+}
+
+module.exports.editCommentPost = (req, res) => {
+  if (!ObjectID.isValid(req.params.id))
+    return res.status(400).send('ID unknown :' + req.params.id)
+}
+
+module.exports.deleteCommentPost = (req, res) => {
   if (!ObjectID.isValid(req.params.id))
     return res.status(400).send('ID unknown :' + req.params.id)
 }
