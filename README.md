@@ -12,5 +12,5 @@ npm i -s bcrypt
 npm i -s jsonwebtoken
 npm i -s cookie-parser
 
-npm i -s multer
+npm i -s multer@2.0.0-rc.1
 //mongodb+srv://abdellah:blackroci24@likididb.lu9fpuu.mongodb.net/test
