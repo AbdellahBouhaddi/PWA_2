@@ -10,7 +10,7 @@ const createToken = (id) => {
 }
 
 module.exports.singUp = async (req, res) => {
-  console.log(req.body)
+  //console.log(req.body)
   const { psuedo, email, password } = req.body
 
   try {
@@ -34,7 +34,7 @@ module.exports.signIn = async (req, res) => {
     res.status(201).json({ user: user._id })
   } catch (err) {
     const errors = signInErrors(err)
-    res.status(500).json({ errors })
+    res.status(200).json({ errors })
   }
 }
 module.exports.logout = async (req, res) => {

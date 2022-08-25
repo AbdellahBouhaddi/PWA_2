@@ -67,7 +67,7 @@ module.exports.follow = async (req, res) => {
       { new: true, upsert: true },
       (err, docs) => {
         if (!err) res.send(docs)
-        else return res.status(400).json(err)
+        else return res.status(500).json(err)
       }
     ).clone()
     // add to following list
@@ -77,7 +77,7 @@ module.exports.follow = async (req, res) => {
       { new: true, upsert: true },
       (err, docs) => {
         // if (!err) res.status(201).json(docs)
-        if (err) return res.status(400).json(err)
+        if (err) return res.status(500).json(err)
       }
     ).clone()
   } catch (err) {
@@ -99,7 +99,7 @@ module.exports.unfollow = async (req, res) => {
       { new: true, upsert: true },
       (err, docs) => {
         if (!err) res.send(docs)
-        else return res.status(400).jsos(err)
+        else return res.status(500).jsos(err)
       }
     ).clone()
     // remove from following list
@@ -109,7 +109,7 @@ module.exports.unfollow = async (req, res) => {
       { new: true, upsert: true },
       (err, docs) => {
         // if (!err) res.status(201).json(docs)
-        if (err) return res.status(400).jsos(err)
+        if (err) return res.status(500).jsos(err)
       }
     ).clone()
   } catch (err) {

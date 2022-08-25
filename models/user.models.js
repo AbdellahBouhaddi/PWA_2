@@ -66,11 +66,10 @@ userShema.statics.login = async function (email, password) {
     if (auth) {
       return user
     }
-    console.log('err1')
 
     throw Error('incorrect password')
   }
-  console.log('err2')
+
   throw Error('incorrect email')
 }
 

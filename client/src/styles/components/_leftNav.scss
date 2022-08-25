@@ -1,0 +1,111 @@
+.left-nav-container {
+  position: relative;
+  bottom: 150;
+
+  .icons {
+    position: fixed;
+    z-index: 10;
+    bottom: 200px;
+    left: 20px;
+
+    max-width: 50px;
+    padding-right: 50px;
+
+    @media screen and(max-width: 590px) {
+      margin: 300px 0 0 -9px;
+      left: 5px;
+      width: 100px;
+      bottom: 60px;
+
+      //background-color: aqua;
+    }
+
+    .icons-bis {
+      position: absolute;
+      left: -10px;
+      bottom: -150px;
+      @media screen and(max-width: 590px) {
+        left: 0px;
+        align-items: center;
+        justify-content: center;
+        background-color: $color-2;
+        bottom: -60px;
+        width: 100vw;
+        height: 70px;
+        display: flex;
+      }
+
+      a {
+        transition: 0.1s;
+        display: inline-block;
+
+        @media screen and(max-width: 590px) {
+          left: 2px;
+          margin: 50px;
+          display: flexbox;
+        }
+
+        &:before {
+          transition: 0.15s ease;
+          transform: scale(0);
+          transform-origin: center;
+          z-index: -10;
+          content: '';
+          height: 45px;
+          width: 45px;
+          position: absolute;
+          background: $color-4;
+          border-radius: 50px;
+        }
+
+        &:hover {
+          transform: scale(1.02);
+        }
+        &:hover::before {
+          transform: scale(1);
+          @media screen and(max-width: 590px) {
+            background: $color-1;
+            height: 34px;
+            width: 34px;
+          }
+        }
+
+        img {
+          @media screen and(max-width: 590px) {
+            height: 34px;
+            width: 34px;
+          }
+        }
+      }
+
+      .active-left-nav {
+        position: relative;
+
+        &::after {
+          content: '';
+          height: 40px;
+          width: 5px;
+          position: absolute;
+          background: $color-1;
+          left: -7px;
+          bottom: 8px;
+          border-radius: 40px;
+          transform: scaleY(0);
+          animation: scale 1.5s ease forwards;
+
+          @keyframes scale {
+            to {
+              transform: scaleY(1);
+            }
+          }
+          @media screen and(max-width: 590px) {
+            height: 5px;
+            width: 50px;
+            bottom: 1px;
+            left: -8px;
+          }
+        }
+      }
+    }
+  }
+}

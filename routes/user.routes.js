@@ -5,6 +5,7 @@ const userController = require('../controllers/user.controller')
 const uploadController = require('../controllers/upload.controller')
 const path = require('path')
 const multer = require('multer')
+const upload = multer()
 /*const storage = multer.diskStorage({
   destination: async (req, file, cb) => {
     cb(null, './Images')
@@ -15,7 +16,7 @@ const multer = require('multer')
   },
 })*/
 //const upload = multer({ storage: storage })
-const upload = multer()
+
 //auth
 router.post('/register', authController.singUp)
 router.post('/login', authController.signIn)

@@ -7,7 +7,7 @@ module.exports.signUpErrors = (err) => {
   if (err.message.includes('email')) errors.email = 'Email incorrect'
 
   if (err.message.includes('password'))
-    errors.password = 'Le mot de passe doit faire 6 caractères minimum'
+    errors.password = 'Le mot de passe doit faire 8 caractères minimum'
 
   if (err.code === 11000 && Object.keys(err.keyValue)[0].includes('email'))
     errors.email = 'Cet email est déjà enregistré'
@@ -35,7 +35,7 @@ module.exports.uploadErrors = (err) => {
     errors.format = ' format incompatible'
 
   if (err.message.includes('max size'))
-    errors.format = ' le fichier fépasse 500 ko'
+    errors.format = ' le fichier dépasse 500 ko'
 
   return errors
 }

@@ -21,11 +21,17 @@ const PostSchema = new mongoose.Schema(
       type: [String],
       required: true,
     },
+    prixAp: {
+      type: String,
+    },
+    prixAv: {
+      type: String,
+    },
     comments: {
       type: [
         {
           commenterId: String,
-          commenterPsuedo: String,
+          commenterPseudo: String,
           text: String,
           timestamp: Number,
         },

@@ -13,4 +13,6 @@ npm i -s jsonwebtoken
 npm i -s cookie-parser
 
 npm i -s multer@2.0.0-rc.1
+
+npm i -s cors
 //mongodb+srv://abdellah:blackroci24@likididb.lu9fpuu.mongodb.net/test
