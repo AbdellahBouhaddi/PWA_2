@@ -122,12 +122,33 @@
     .prix {
       display: flex;
       margin-left: 10px;
+      p {
+        padding-right: 3cm;
+        margin-right: 10px;
+        display: flex;
+      }
     }
     .prixx {
       display: flex;
       margin-right: 50px;
       font-size: 1.1rem;
       font-weight: bold;
+    }
+    .prixxx {
+      display: block;
+      margin-right: 10px;
+      //background-color: aqua;
+      padding-right: 5px;
+      font-size: 1.1rem;
+      font-weight: bold;
+      p {
+        padding-right: 3cm;
+        margin-right: 3px;
+        display: flex;
+      }
+      img {
+        margin-right: 10px;
+      }
     }
     .update-post {
       textarea {

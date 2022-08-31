@@ -11,6 +11,20 @@ const userShema = new mongoose.Schema(
       unique: true,
       trim: true,
     },
+    typeCompte: {
+      type: String,
+    },
+    localisation: {
+      type: String,
+    },
+
+    numero: {
+      type: String,
+      maxlength: 10,
+      // minlength: 10,
+      //unique: true,
+      trim: true,
+    },
     email: {
       type: String,
       required: true,
@@ -28,7 +42,7 @@ const userShema = new mongoose.Schema(
     },
     picture: {
       type: String,
-      default: './uploads/profil/randomn-user.png',
+      default: './uploads/profil/random-user.png',
     },
     bio: {
       type: String,

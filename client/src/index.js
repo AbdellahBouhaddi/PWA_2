@@ -12,8 +12,9 @@ import { getUsers } from './actions/users.actions'
 //dev tools
 import { composeWithDevTools } from 'redux-devtools-extension'
 import { getPosts } from './actions/post.actions'
+import * as serviceWorkerRegistration from './serviceWorkerRegistration'
 
-const store = createStore(
+export const store = createStore(
   rootReducer,
   composeWithDevTools(applyMiddleware(thunk))
 )
@@ -26,3 +27,4 @@ root.render(
     <App />
   </Provider>
 )
+serviceWorkerRegistration.register()

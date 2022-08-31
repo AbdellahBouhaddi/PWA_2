@@ -1,11 +1,118 @@
 .profil-page {
   margin: 80px auto 0;
   max-width: 1200px;
+  // width: 1200px;
   //min-height: 100vh;
   display: grid;
 
-  @media screen and(max-width: 550px) {
-    // min-width: 500px;
+  .get-friends-container {
+    width: 650px;
+    height: 100px;
+    margin-left: 60px;
+    background: linear-gradient(145deg, $color-2 30%, #ffe1d9 100%);
+    border-radius: 20px;
+    padding: 20px 20px 10px;
+    //min-height: 100px;
+    overflow-y: auto;
+    //overflow-y: hidden;
+    @media screen and(max-width: 590px) {
+      width: 90vw;
+      margin-left: 5px;
+    }
+    .btn {
+      width: 100px;
+      background-color: aqua;
+      padding: 10px 24px 8px;
+      margin: 10px;
+      transition: 0.2s;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      @media screen and(max-width: 590px) {
+        padding: 5px 15px 5px;
+        margin: 5px;
+        width: fit-content;
+      }
+
+      &:hover {
+        background: $color-4;
+        color: $color-1;
+      }
+    }
+    height: 340px;
+
+    h4 {
+      font-size: 1.4rem;
+      color: $color-3;
+    }
+    .icon {
+      margin: 16px auto;
+      width: 100%;
+      text-align: center;
+      i {
+        font-size: 1.6rem;
+        color: $color-3;
+      }
+    }
+    ul {
+      width: 60%;
+      padding: 14px 0 0;
+      li {
+        display: flex;
+      }
+
+      .user-hint {
+        display: grid;
+        grid-template-columns: 25% 40% 35% 30% 30%;
+        align-items: center;
+        margin: 8px 0;
+        @media screen and(max-width: 590px) {
+          grid-template-columns: 20% 35% 35% 45% 30%;
+        }
+
+        img {
+          height: 46px;
+          width: 46px;
+          margin: 10px;
+          border-radius: 12px;
+          object-fit: cover;
+          box-shadow: 0 0 2px rgba(51, 51, 51, 0.377);
+          @media screen and(max-width: 590px) {
+            margin: 5px;
+            height: 30px;
+            width: 30px;
+          }
+        }
+        p {
+          text-align: left;
+          font-size: 0.9rem;
+          font-family: $font-3;
+          margin: 10px;
+        }
+        span {
+          text-align: right;
+
+          button {
+            background: $color-1;
+            color: $color-4;
+            padding: 10px 24px 8px;
+            transition: 0.2s;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            @media screen and(max-width: 590px) {
+              padding: 5px 10px 5px;
+            }
+
+            &:hover {
+              background: $color-4;
+              color: $color-1;
+            }
+          }
+        }
+      }
+    }
+  }
+  @media screen and(max-width: 590px) {
+    max-width: 500px;
   }
 
   .icons {
@@ -16,6 +123,15 @@
     margin: 0 auto;
     display: grid;
     grid-template-columns: 60% 40%;
+
+    @media screen and(max-width: 885px) {
+      grid-template-columns: 1fr;
+    }
+  }
+  .posst-container {
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 66% 40%;
 
     @media screen and(max-width: 885px) {
       grid-template-columns: 1fr;
@@ -33,7 +149,8 @@
     border-radius: 20px;
 
     @media screen and(max-width: 550px) {
-      min-width: 350px;
+      min-width: 450px;
+      padding: 0px;
     }
 
     .form-container {
@@ -98,6 +215,31 @@
             box-shadow: 0 0 3px rgba(51, 51, 51, 0.2);
           }
         }
+        select {
+          padding: 10px 20px;
+          margin: 0;
+          width: 270px;
+          font-size: 1.2rem;
+          font-family: $font-2;
+          border-radius: 20px;
+
+          &:focus {
+            box-shadow: 0 0 3px rgba(51, 51, 51, 0.2);
+          }
+        }
+        option {
+          padding: 14px 20px;
+          margin: 10px;
+          font-size: 1.2rem;
+          font-family: $font-2;
+          border-radius: 20px;
+          //background: aqua;
+
+          &:focus {
+            box-shadow: 0 0 3px rgba(51, 51, 51, 0.2);
+          }
+        }
+
         a {
           color: rgb(62, 62, 214);
         }
@@ -130,7 +272,7 @@
   .update-container {
     display: grid;
     grid-template-columns: 50% 50%;
-    margin-left: 50px;
+    margin-left: 5px;
 
     @media screen and(max-width: 700px) {
       grid-template-columns: 1fr;
@@ -221,6 +363,17 @@
         width: 100%;
         margin-bottom: -6px;
         font-size: 1.2rem;
+      }
+      input {
+        padding: 14px 20px;
+        margin: 0;
+        font-size: 1.2rem;
+        font-family: $font-2;
+        border-radius: 20px;
+
+        &:focus {
+          box-shadow: 0 0 3px rgba(51, 51, 51, 0.2);
+        }
       }
       button {
         margin: 5px 0;

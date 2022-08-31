@@ -6,14 +6,21 @@ import Thread from '../components/Thread'
 import Log from '../components/Log'
 import Trends from '../components/Trends'
 import FriendsHint from '../components/Profil/FriendsHint'
+import { useSelector } from 'react-redux'
 const Home = () => {
   const uid = useContext(UidContext)
+  const userData = useSelector((state) => state.userReducer)
   return (
     <div className="home">
       <LeftNav />
       <div className="main">
         <div className="home-header">
-          {uid ? <NewPostForm /> : <Log signin={true} signup={false} />}
+          {userData.typeCompte === 'commercon' ||
+          userData.typeCompte === 'admin' ? (
+            <>{uid ? <NewPostForm /> : <Log signin={true} signup={false} />}</>
+          ) : (
+            <>{uid ? <></> : <Log signin={true} signup={false} />}</>
+          )}
         </div>
         <Thread />
       </div>

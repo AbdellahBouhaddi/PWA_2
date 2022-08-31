@@ -77,13 +77,26 @@ const Card = ({ post }) => {
                 <div className="prix">
                   <p className="prixx">
                     {' '}
-                    {'prix avant : ' + post.prixAv + ' DA'}
+                    {'Prix avant : ' + post.prixAv + ' DA'}
                   </p>
                   <p className="prixx">
                     {' '}
-                    {'prix aprés : ' + post.prixAp + ' DA'}
+                    {'Prix aprés : ' + post.prixAp + ' DA'}
                   </p>
+                  <br />
                 </div>{' '}
+                <div className="prixxx">
+                  <p className="">
+                    {' '}
+                    <img src="./img/icons/hd.png" alt="edit" height={25} />
+                    {'     ' + post.localisation}
+                  </p>
+                  <p className="">
+                    {' '}
+                    <img src="./img/icons/phone.png" alt="edit" height={25} />
+                    {'       ' + post.numero}
+                  </p>
+                </div>
               </>
             )}
             {isUpdated && (
@@ -126,14 +139,21 @@ const Card = ({ post }) => {
                 title={post._id}
               ></iframe>
             )}
-            {userData._id === post.posterId && (
-              <div className="button-container">
-                <div onClick={(e) => setIsUpdated(!isUpdated)}>
-                  <img src="./img/icons/edit.svg" alt="edit" />
+
+            {userData._id === post.posterId ||
+            userData.typeCompte === 'admin' ? (
+              <>
+                <div className="button-container">
+                  <div onClick={(e) => setIsUpdated(!isUpdated)}>
+                    <img src="./img/icons/edit.svg" alt="edit" />
+                  </div>
+                  <DeleteCard id={post._id} />
                 </div>
-                <DeleteCard id={post._id} />
-              </div>
+              </>
+            ) : (
+              <></>
             )}
+
             <div className="card-footer">
               <div className="comment-icon">
                 <img

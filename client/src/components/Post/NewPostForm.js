@@ -28,6 +28,8 @@ const NewPostForm = () => {
       data.append('message', message)
       data.append('prixAv', prixAv)
       data.append('prixAp', prixAp)
+      data.append('localisation', userData.localisation)
+      data.append('numero', userData.numero)
       if (file) data.append('file', file)
       await dispatch(addPosts(data))
       dispatch(getPosts())
@@ -105,6 +107,7 @@ const NewPostForm = () => {
               placeholder="Prix Aprés"
               onChange={(e) => setprixAp(e.target.value)}
             ></input>
+
             {prixAv || prixAp || message || postPicture || video.length > 20 ? (
               <li className="card-container">
                 <div className="card-left">
@@ -131,6 +134,13 @@ const NewPostForm = () => {
                         <p> Prix Aprés : 0 DA</p>
                       )}
                     </p>
+                    <div className="prixx">
+                      <p className="prixxx">
+                        Localisation : {userData.localisation}
+                      </p>
+                      <p className="prixxx">numero : {userData.numero}</p>
+                    </div>
+
                     <img src={postPicture} alt="" />
                     {video && (
                       <iframe

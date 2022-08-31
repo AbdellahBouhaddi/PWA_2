@@ -54,6 +54,17 @@
         padding-right: 3cm;
       }
     }
+    .prixxx {
+      display: flexbox;
+      padding: 1px;
+      margin-right: 5px;
+      font-size: 1.1rem;
+      font-weight: bold;
+      p {
+        padding-right: 5cm;
+        display: block;
+      }
+    }
     textarea {
       height: 62px;
       width: 100%;

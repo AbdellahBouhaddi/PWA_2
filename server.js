@@ -2,6 +2,7 @@ const express = require('express')
 const userRoutes = require('./routes/user.routes')
 const postRoutes = require('./routes/post.routes')
 const bodyParser = require('body-parser')
+const path = require('path')
 const cookieParser = require('cookie-parser')
 require('dotenv').config({ path: './config/.env' })
 require('./config/db')
@@ -30,9 +31,19 @@ app.get('/jwtid', requireAuth, (req, res) => {
   res.status(200).send(res.locals.user._id)
 })
 
-// les reoutes
+// les routes
 app.use('/api/user', userRoutes)
 app.use('/api/post', postRoutes)
+
+// serveur production assests
+if (process.env.NODE_ENV === 'production') {
+  //set static folder
+  app.use(express.static(path.join('client/build')))
+
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
+  })
+}
 
 //le serveur
 app.listen(process.env.PORT, () => {

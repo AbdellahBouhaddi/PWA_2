@@ -1,5 +1,5 @@
 module.exports.signUpErrors = (err) => {
-  let errors = { psuedo: '', email: '', password: '' }
+  let errors = { psuedo: '', email: '', password: '', numero: '' }
 
   if (err.message.includes('psuedo'))
     errors.psuedo = 'Pseudo incorrect ou déjà pris'
@@ -8,12 +8,16 @@ module.exports.signUpErrors = (err) => {
 
   if (err.message.includes('password'))
     errors.password = 'Le mot de passe doit faire 8 caractères minimum'
+  if (err.message.includes('numero'))
+    errors.numero = 'Le neumero doit faire 10 chiffres'
 
   if (err.code === 11000 && Object.keys(err.keyValue)[0].includes('email'))
     errors.email = 'Cet email est déjà enregistré'
 
   if (err.code === 11000 && Object.keys(err.keyValue)[0].includes('psuedo'))
     errors.psuedo = 'Ce psuedo est déjà enregistré'
+  if (err.code === 11000 && Object.keys(err.keyValue)[0].includes('numero'))
+    errors.numero = 'Le neumero doit faire 10 carectere'
 
   return errors
 }

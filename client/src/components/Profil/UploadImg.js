@@ -23,6 +23,7 @@ const UploadImg = () => {
         type="file"
         id="file"
         name="file"
+        hidden="true"
         accept=".jpg , .jpeg, .png"
         onChange={(e) => setFile(e.target.files[0])}
       />

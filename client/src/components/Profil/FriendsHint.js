@@ -14,7 +14,11 @@ const FriendsHint = () => {
     const notFriendList = () => {
       let array = []
       usersData.map((user) => {
-        if (user._id !== userData._id && !user.followers.includes(userData._id))
+        if (
+          user._id !== userData._id &&
+          !user.followers.includes(userData._id) &&
+          user.typeCompte === 'commercon'
+        )
           return array.push(user._id)
       })
       array.sort(() => 0.5 - Math.random())

@@ -1,4 +1,5 @@
 import {
+  DELETE_USER,
   FOLLOW_USER,
   GET_USER,
   UNFOLLOW_USER,
@@ -22,7 +23,9 @@ export default function userReducer(state = initialState, action) {
     case UPDATE_BIO:
       return {
         ...state,
-        bio: action.payload,
+        bio: action.payload.bio,
+        numero: action.payload.numero,
+        localisation: action.payload.localisation,
       }
 
     case FOLLOW_USER:
@@ -37,6 +40,9 @@ export default function userReducer(state = initialState, action) {
           (id) => id !== action.payload.idTounFollow
         ),
       }
+    case DELETE_USER:
+      return state.filter((user) => user._id !== action.payload.userId)
+
     default:
       return state
   }

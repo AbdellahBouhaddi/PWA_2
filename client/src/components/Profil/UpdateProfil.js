@@ -1,8 +1,10 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { updateBio } from '../../actions/user.actions'
+import { NavLink } from 'react-router-dom'
+import { deleteUSer, updateBio } from '../../actions/user.actions'
 import LeftNav from '../LeftNav'
-import { dateParser } from '../Utils'
+import Logout from '../Log/Logout'
+import { dateParser, isEmpty } from '../Utils'
 import FollowHandler from './FollowHandler'
 import UploadImg from './UploadImg'
 
@@ -11,19 +13,29 @@ const UpdateProfil = () => {
   const usersData = useSelector((state) => state.usersReducer)
   const error = useSelector((state) => state.errorReducer.userErrors)
 
-  const [bio, setBio] = useState()
+  const [bio, setBio] = useState(userData.bio)
+  const [numero, setNumero] = useState(userData.numero)
+  const [localisation, setLocalisation] = useState(userData.localisation)
   const [updateForm, setUpdateForm] = useState(false)
   const dispatch = useDispatch()
   const [followingPopup, setFollowingPopup] = useState(false)
   const [followersPopup, setFollowersPopup] = useState(false)
+  const [suppcompt, setSuppcompt] = useState(false)
+
+  const supprimerCompte = (id) => {
+    setSuppcompt(true)
+    dispatch(deleteUSer(id))
+    window.location = '/'
+  }
   const handleUpdate = () => {
-    dispatch(updateBio(userData._id, bio))
+    dispatch(updateBio(userData._id, bio, numero, localisation))
 
     setUpdateForm(false)
   }
+  useEffect(() => {}, [userData, suppcompt])
 
   return (
-    <div className="profil-container">
+    <div className="profil-page">
       <LeftNav />
       <h1>profile de {userData.psuedo}</h1>
       <div className="update-container">
@@ -31,26 +43,65 @@ const UpdateProfil = () => {
           <h3>photo de profil</h3>
           <img src={userData.picture} alt="user-pic" />
           <UploadImg />
+          {userData.typeCompte !== 'admin' && (
+            <div className="right-part">
+              <div className="bio-update">
+                <h5
+                  onClick={() => {
+                    if (
+                      window.confirm(
+                        'voulez-vous vraiment supprimer ce compte ?'
+                      )
+                    ) {
+                      supprimerCompte(userData._id)
+                    }
+                  }}
+                >
+                  supprimer le compte
+                </h5>
+              </div>
+            </div>
+          )}
+
           <p>{error.maxSize} </p>
           <p>{error.format} </p>
         </div>
         <div className="right-part">
           <div className="bio-update">
-            <h3>Bio</h3>
             {updateForm === false && (
               <>
+                {userData.typeCompte === 'commercon' ||
+                userData.typeCompte === 'admin' ? (
+                  <>
+                    <p>Numero : {userData.localisation}</p>
+                    <p>Localisation : {userData.numero}</p>
+                  </>
+                ) : (
+                  <></>
+                )}
+                <h3>Bio</h3>
                 <p onClick={() => setUpdateForm(!updateForm)}>
                   {' '}
                   {userData.bio}
                 </p>
                 <button onClick={() => setUpdateForm(!updateForm)}>
                   {' '}
-                  Modifier bio
+                  Modifier
                 </button>
               </>
             )}
             {updateForm && (
               <>
+                <textarea
+                  type="text "
+                  defaultValue={userData.localisation}
+                  onChange={(e) => setLocalisation(e.target.value)}
+                ></textarea>
+                <textarea
+                  type="text "
+                  defaultValue={userData.numero}
+                  onChange={(e) => setNumero(e.target.value)}
+                ></textarea>
                 <textarea
                   type="text "
                   defaultValue={userData.bio}
@@ -68,13 +119,17 @@ const UpdateProfil = () => {
           >
             Abonnement : {userData.following ? userData.following.length : ''}{' '}
           </h5>
-          <h5
-            onClick={() => {
-              setFollowersPopup(true)
-            }}
-          >
-            Abonnés : {userData.followers ? userData.followers.length : ''}{' '}
-          </h5>
+          {userData.typeCompte !== 'utilisateur' ? (
+            <h5
+              onClick={() => {
+                setFollowersPopup(true)
+              }}
+            >
+              Abonnés : {userData.followers ? userData.followers.length : ''}{' '}
+            </h5>
+          ) : (
+            <></>
+          )}
         </div>
       </div>
       {followingPopup && (

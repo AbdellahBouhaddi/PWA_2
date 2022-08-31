@@ -9,6 +9,9 @@ const SignUpForm = () => {
   const [psuedo, setPsuedo] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [typeCompte, setTypeCompte] = useState('')
+  const [numero, setNumero] = useState()
+  const [localisation, setLocalisation] = useState()
   const [controlPassword, setControlPassword] = useState('')
 
   const handleRegister = async (e) => {
@@ -16,20 +19,25 @@ const SignUpForm = () => {
     const terms = document.getElementById('terms')
     const psuedoError = document.querySelector('.psuedo.error')
     const emailError = document.querySelector('.email.error')
+    const numeroError = document.querySelector('.numero.error')
     const passwordError = document.querySelector('.password.error')
+    const typrcomptError = document.querySelector('.type.error')
     const passwordConfirmError = document.querySelector(
       '.password-confirm.error'
     )
     const termsError = document.querySelector('.terms.error')
     passwordConfirmError.innerHTML = ''
     termsError.innerHTML = ''
-    if (password !== controlPassword || !terms.checked) {
+    typrcomptError.innerHTML = ''
+    if (password !== controlPassword || !terms.checked || typeCompte === '') {
       if (password !== controlPassword)
         passwordConfirmError.innerHTML =
           'les mots de passe ne correspondent pas.'
 
       if (!terms.checked)
         termsError.innerHTML = 'veullez valider les conditions générales. '
+      if (typeCompte === '')
+        typrcomptError.innerHTML = 'veullez choisir le type de compte '
     } else {
       await axios({
         method: 'post',
@@ -38,14 +46,18 @@ const SignUpForm = () => {
           psuedo,
           email,
           password,
+          typeCompte,
+          numero,
+          localisation,
         },
       })
         .then((res) => {
-          // console.log(res)
+          console.log(res)
           if (res.data.errors) {
             psuedoError.innerHTML = res.data.errors.psuedo
             emailError.innerHTML = res.data.errors.email
             passwordError.innerHTML = res.data.errors.password
+            numeroError.innerHTML = res.data.errors.numero
           } else {
             setFormSubmit(true)
           }
@@ -89,6 +101,50 @@ const SignUpForm = () => {
           />
           <div className="email error"></div>
           <br />
+          <label htmlFor="email">Type de compte</label>
+          <br />
+          <select
+            type="text"
+            name="typeCompte"
+            id="typeCompte"
+            onChange={(e) => setTypeCompte(e.target.value)}
+            value={typeCompte}
+          >
+            <option value="" hidden="true"></option>
+            <option value="commercon">commerçon</option>
+            <option value="utilisateur">utilisateur</option>
+          </select>
+
+          <div className="type error"></div>
+          <br />
+          {typeCompte === 'utilisateur' || typeCompte === '' ? (
+            <></>
+          ) : (
+            <>
+              <label htmlFor="email">Numero</label>
+              <br />
+              <input
+                type="number"
+                name="numero"
+                id="numero"
+                onChange={(e) => setNumero(e.target.value)}
+                value={numero}
+              />
+              <div className="numero error"></div>
+              <br />
+              <label htmlFor="email">Localisation</label>
+              <br />
+              <input
+                type="text"
+                name="localisation"
+                id="localisation"
+                onChange={(e) => setLocalisation(e.target.value)}
+                value={localisation}
+              />
+              <div className="localisation error"></div>
+              <br />
+            </>
+          )}
 
           <label htmlFor="password">Mot de passe</label>
           <br />

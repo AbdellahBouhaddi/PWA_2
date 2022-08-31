@@ -1,11 +1,18 @@
 import axios from 'axios'
-
+import cookie from 'js-cookie'
 export const GET_USER = 'GET_USER'
 export const UPLOAD_PICTURE = 'UPLOAD_PICTURE'
 export const UPDATE_BIO = 'UPDATE_BIO'
 export const FOLLOW_USER = 'FOLLOW_USER'
 export const UNFOLLOW_USER = 'UNFOLLOW_USER'
 export const GET_USER_ERRORS = 'GET_USER_ERRORS'
+export const DELETE_USER = 'DELETE_USER'
+
+const removeCookie = (key) => {
+  if (window !== 'undifined') {
+    cookie.remove(key, { expires: 1 })
+  }
+}
 
 export const getUser = (uid) => {
   return (dispatch) => {
@@ -38,15 +45,15 @@ export const uploadPicture = (data, id) => {
   }
 }
 
-export const updateBio = (userId, bio) => {
+export const updateBio = (userId, bio, numero, localisation) => {
   return (dispatch) => {
     return axios({
       method: 'put',
       url: `${process.env.REACT_APP_API_URL}api/user/` + userId,
-      data: { bio },
+      data: { bio, numero, localisation },
     })
       .then((res) => {
-        dispatch({ type: UPDATE_BIO, payload: bio })
+        dispatch({ type: UPDATE_BIO, payload: { bio, numero, localisation } })
       })
       .catch((err) => console.log(err))
   }
@@ -76,6 +83,40 @@ export const unfollowUser = (followerId, idTounFollow) => {
       .then((res) => {
         dispatch({ type: UNFOLLOW_USER, payload: { idTounFollow } })
       })
+      .catch((err) => console.log(err))
+  }
+}
+
+export const deleteUSer = (userId) => {
+  return (dispatch) => {
+    return axios({
+      method: 'delete',
+      url: `${process.env.REACT_APP_API_URL}api/user/${userId}`,
+    })
+      .then((res) => {
+        dispatch({
+          type: DELETE_USER,
+          payload: { userId },
+        })
+        removeCookie('jwt')
+      })
+
+      .catch((err) => console.log(err))
+  }
+}
+export const deleteUsers = (userId) => {
+  return (dispatch) => {
+    return axios({
+      method: 'delete',
+      url: `${process.env.REACT_APP_API_URL}api/user/${userId}`,
+    })
+      .then((res) => {
+        dispatch({
+          type: DELETE_USER,
+          payload: { userId },
+        })
+      })
+
       .catch((err) => console.log(err))
   }
 }

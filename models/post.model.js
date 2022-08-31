@@ -27,6 +27,12 @@ const PostSchema = new mongoose.Schema(
     prixAv: {
       type: String,
     },
+    localisation: {
+      type: String,
+    },
+    numero: {
+      type: String,
+    },
     comments: {
       type: [
         {
