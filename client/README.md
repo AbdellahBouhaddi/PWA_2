@@ -71,7 +71,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 npx create-react-app client
 npm i -s node-sass@4.14.1
-npm i -s react router-dom
+npm i -s react-router-dom
 npm i -s axios
 npm i -s dotenv
 npm i -s js-cookie

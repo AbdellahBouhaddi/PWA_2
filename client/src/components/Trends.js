@@ -36,7 +36,7 @@ const Trends = () => {
                         usersData
                           .map((user) => {
                             if (user._id === post.posterId) {
-                              return user.picture
+                              return post.picture
                             } else return null
                           })
                           .join('')
@@ -46,6 +46,10 @@ const Trends = () => {
                   </div>
                   <div className="trend-content">
                     <p>{post.message}</p>
+                    <p>
+                      {post.prixAv + ' DA' + ' --> ' + post.prixAp + ' DA'}{' '}
+                    </p>
+
                     <span>lire</span>
                   </div>
                 </li>

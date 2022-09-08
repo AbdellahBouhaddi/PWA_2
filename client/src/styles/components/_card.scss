@@ -111,17 +111,21 @@
         }
       }
     }
-    p {
+    .pp {
       margin: 3px 0 9px;
       font-size: 1.1rem;
 
-      @media screen and(max-width: 440px) {
+      @media screen and(max-width: 5900px) {
         margin-top: -18px;
+        display: flex;
       }
     }
     .prix {
       display: flex;
       margin-left: 10px;
+      @media screen and(max-width: 590px) {
+        display: block;
+      }
       p {
         padding-right: 3cm;
         margin-right: 10px;

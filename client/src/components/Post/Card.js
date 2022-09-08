@@ -44,7 +44,8 @@ const Card = ({ post }) => {
                 !isEmpty(usersData[0]) &&
                 usersData
                   .map((user) => {
-                    if (user._id === post.posterId) return user.picture
+                    if (user._id && user._id === post.posterId)
+                      return user.picture
                     else return null
                   })
                   .join('')
@@ -59,7 +60,8 @@ const Card = ({ post }) => {
                   {!isEmpty(usersData[0]) &&
                     usersData
                       .map((user) => {
-                        if (user._id === post.posterId) return user.psuedo
+                        if (user._id && user._id === post.posterId)
+                          return user.psuedo
                         else return null
                       })
                       .join('')}
@@ -73,7 +75,7 @@ const Card = ({ post }) => {
             {isUpdated === false && (
               <>
                 {' '}
-                <p> {post.message}</p>
+                <p className="pp"> {post.message}</p>
                 <div className="prix">
                   <p className="prixx">
                     {' '}

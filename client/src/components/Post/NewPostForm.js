@@ -34,6 +34,8 @@ const NewPostForm = () => {
       await dispatch(addPosts(data))
       dispatch(getPosts())
       cancelPost()
+      setprixAp('')
+      setprixAv('')
     } else alert('Veullez entrer la photo et les deux prix ')
   }
   const cancelPost = () => {
@@ -98,12 +100,14 @@ const NewPostForm = () => {
             <input
               className="prixx"
               type="number"
+              Value={prixAv}
               placeholder="Prix Avant"
               onChange={(e) => setprixAv(e.target.value)}
             ></input>
             <input
               className="prixx"
               type="number"
+              Value={prixAp}
               placeholder="Prix Aprés"
               onChange={(e) => setprixAp(e.target.value)}
             ></input>

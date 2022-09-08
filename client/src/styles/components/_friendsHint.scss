@@ -3,10 +3,10 @@
   background: linear-gradient(145deg, $color-2 30%, #ffe1d9 100%);
   border-radius: 20px;
   padding: 20px 20px 10px;
-  overflow-y: auto;
+  overflow-y: scroll;
   //overflow-y: hidden;
 
-  height: 340px;
+  height: 210px;
 
   h4 {
     font-size: 1.4rem;

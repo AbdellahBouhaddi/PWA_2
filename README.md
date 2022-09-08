@@ -1,6 +1,5 @@
 # PWA_2
 
-npm install --save express
 npm install --save body-parser@1.20.0
 npm install --save dotenv@16.0.1
 npm install --save express@4.18.1
@@ -16,3 +15,13 @@ npm i -s multer@2.0.0-rc.1
 
 npm i -s cors
 //mongodb+srv://abdellah:blackroci24@likididb.lu9fpuu.mongodb.net/test
+
+email : admin@gmail.com
+mdp : adminadmin
+
+email : commercon@gmail.com
+mdp : commerconcommercon
+
+email : user@gmail.com
+mdp : useruser
+useruser

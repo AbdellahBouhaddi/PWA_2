@@ -16,6 +16,16 @@
 
   .main {
     margin-top: -8px;
+    @media screen and(max-width: 590px) {
+      width: 90vw;
+      margin-right: 0px;
+      padding: 0;
+      ul {
+        justify-content: center;
+        margin-right: 0px;
+        width: 90vw;
+      }
+    }
   }
 
   .right-side {

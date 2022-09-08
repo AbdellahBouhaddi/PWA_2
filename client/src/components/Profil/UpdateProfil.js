@@ -73,8 +73,8 @@ const UpdateProfil = () => {
                 {userData.typeCompte === 'commercon' ||
                 userData.typeCompte === 'admin' ? (
                   <>
-                    <p>Numero : {userData.localisation}</p>
-                    <p>Localisation : {userData.numero}</p>
+                    <p>Numero : {userData.numero}</p>
+                    <p>Localisation : {userData.localisation}</p>
                   </>
                 ) : (
                   <></>
@@ -92,16 +92,24 @@ const UpdateProfil = () => {
             )}
             {updateForm && (
               <>
-                <textarea
-                  type="text "
-                  defaultValue={userData.localisation}
-                  onChange={(e) => setLocalisation(e.target.value)}
-                ></textarea>
-                <textarea
-                  type="text "
-                  defaultValue={userData.numero}
-                  onChange={(e) => setNumero(e.target.value)}
-                ></textarea>
+                {userData.typeCompte === 'commercon' ||
+                userData.typeCompte === 'admin' ? (
+                  <>
+                    <textarea
+                      type="text "
+                      defaultValue={userData.numero}
+                      onChange={(e) => setNumero(e.target.value)}
+                    ></textarea>
+                    <textarea
+                      type="text "
+                      defaultValue={userData.localisation}
+                      onChange={(e) => setLocalisation(e.target.value)}
+                    ></textarea>
+                  </>
+                ) : (
+                  <></>
+                )}
+
                 <textarea
                   type="text "
                   defaultValue={userData.bio}
