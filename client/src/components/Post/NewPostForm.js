@@ -9,6 +9,8 @@ const NewPostForm = () => {
   const [message, setMessage] = useState('')
   const [prixAv, setprixAv] = useState('')
   const [prixAp, setprixAp] = useState('')
+  const [typeProduit, setTypeProduit] = useState('')
+  const [dateexpiration, setDateExpiration] = useState('')
   const [postPicture, setPOstPicture] = useState(null)
   const [video, setVideo] = useState('')
   const [file, setFile] = useState()
@@ -30,12 +32,12 @@ const NewPostForm = () => {
       data.append('prixAp', prixAp)
       data.append('localisation', userData.localisation)
       data.append('numero', userData.numero)
+      data.append('TypeProduit', typeProduit)
+      data.append('dateexpiration', dateexpiration)
       if (file) data.append('file', file)
       await dispatch(addPosts(data))
       dispatch(getPosts())
       cancelPost()
-      setprixAp('')
-      setprixAv('')
     } else alert('Veullez entrer la photo et les deux prix ')
   }
   const cancelPost = () => {
@@ -45,6 +47,8 @@ const NewPostForm = () => {
     setPOstPicture('')
     setVideo('')
     setFile('')
+    setTypeProduit('')
+    setDateExpiration('')
   }
   const handleVideo = () => {
     let findLink = message.split(' ')
@@ -98,20 +102,39 @@ const NewPostForm = () => {
               value={message}
             />
             <input
-              className="prixx"
+              className="inputprix"
               type="number"
               Value={prixAv}
               placeholder="Prix Avant"
               onChange={(e) => setprixAv(e.target.value)}
             ></input>
+
             <input
-              className="prixx"
+              className="inputprix"
               type="number"
               Value={prixAp}
               placeholder="Prix Aprés"
               onChange={(e) => setprixAp(e.target.value)}
             ></input>
 
+            <input
+              className="TypeProduit"
+              type="text"
+              id="TypeProduit"
+              Value={typeProduit}
+              placeholder="c'est quoi la categorie du produit"
+              onChange={(e) => setTypeProduit(e.target.value)}
+              value={typeProduit}
+            />
+            <input
+              className="TypeProduit"
+              type="text"
+              id="dateexpiration"
+              Value={dateexpiration}
+              placeholder="Date d'expiration jj/mm/aaaa"
+              onChange={(e) => setDateExpiration(e.target.value)}
+              value={dateexpiration}
+            />
             {prixAv || prixAp || message || postPicture || video.length > 20 ? (
               <li className="card-container">
                 <div className="card-left">
@@ -126,7 +149,7 @@ const NewPostForm = () => {
                   </div>
                   <div className="content">
                     <p>{message} </p>
-                    <p className="prixx">
+                    <div className="prixx">
                       {prixAv ? (
                         <p> Prix Avant : {prixAv} DA</p>
                       ) : (
@@ -137,12 +160,10 @@ const NewPostForm = () => {
                       ) : (
                         <p> Prix Aprés : 0 DA</p>
                       )}
-                    </p>
-                    <div className="prixx">
-                      <p className="prixxx">
-                        Localisation : {userData.localisation}
-                      </p>
-                      <p className="prixxx">numero : {userData.numero}</p>
+                    </div>
+                    <div className="prixxx">
+                      <p>Localisation : {userData.localisation}</p>
+                      <p>numero : {userData.numero}</p>
                     </div>
 
                     <img src={postPicture} alt="" />

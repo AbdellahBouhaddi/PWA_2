@@ -44,6 +44,8 @@ export default function postReducer(state = initialState, action) {
             message: action.payload.message,
             prixAv: action.payload.prixAv,
             prixAp: action.payload.prixAp,
+            TypeProduit: action.payload.TypeProduit,
+            dateexpiration: action.payload.dateexpiration,
           }
         } else return post
       })

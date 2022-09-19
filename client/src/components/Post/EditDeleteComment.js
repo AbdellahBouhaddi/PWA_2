@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { deleteComment, editComment } from '../../actions/post.actions'
 import { UidContext } from '../AppContext'
 
@@ -9,6 +9,7 @@ const EditDeleteComment = ({ comment, postId }) => {
   const [text, setText] = useState('')
   const uid = useContext(UidContext)
   const dispatch = useDispatch()
+  const userData = useSelector((state) => state.userReducer)
 
   const handleEdit = (e) => {
     e.preventDefault()
@@ -26,7 +27,7 @@ const EditDeleteComment = ({ comment, postId }) => {
 
   useEffect(() => {
     const chekAuthor = () => {
-      if (uid === comment.commenterId) {
+      if (uid === comment.commenterId || userData.typeCompte === 'admin') {
         setIsAuthor(true)
       }
     }

@@ -70,8 +70,7 @@ const UpdateProfil = () => {
           <div className="bio-update">
             {updateForm === false && (
               <>
-                {userData.typeCompte === 'commercon' ||
-                userData.typeCompte === 'admin' ? (
+                {userData.typeCompte === 'commercon' ? (
                   <>
                     <p>Numero : {userData.numero}</p>
                     <p>Localisation : {userData.localisation}</p>
@@ -79,6 +78,7 @@ const UpdateProfil = () => {
                 ) : (
                   <></>
                 )}
+
                 <h3>Bio</h3>
                 <p onClick={() => setUpdateForm(!updateForm)}>
                   {' '}
@@ -92,8 +92,7 @@ const UpdateProfil = () => {
             )}
             {updateForm && (
               <>
-                {userData.typeCompte === 'commercon' ||
-                userData.typeCompte === 'admin' ? (
+                {userData.typeCompte === 'commercon' ? (
                   <>
                     <textarea
                       type="text "

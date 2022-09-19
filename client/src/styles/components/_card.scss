@@ -112,28 +112,44 @@
       }
     }
     .pp {
-      margin: 3px 0 9px;
+      padding-top: 20px;
+      margin: 10px 10px 10px 9px;
       font-size: 1.1rem;
 
-      @media screen and(max-width: 5900px) {
+      @media screen and(max-width: 590px) {
         margin-top: -18px;
+        padding-top: 0px;
+        margin: 10px 10px 10px -10px;
         display: flex;
       }
     }
     .prix {
       display: flex;
+      margin: 10px;
+
       margin-left: 10px;
       @media screen and(max-width: 590px) {
         display: block;
+        margin-bottom: -20px;
       }
       p {
         padding-right: 3cm;
         margin-right: 10px;
         display: flex;
+        @media screen and(max-width: 590px) {
+          padding-right: 0cm;
+        }
       }
     }
     .prixx {
+      margin: 10px;
       display: flex;
+      @media screen and(max-width: 590px) {
+        display: flex;
+
+        padding: 0px;
+        margin: 0px;
+      }
       margin-right: 50px;
       font-size: 1.1rem;
       font-weight: bold;
@@ -185,10 +201,15 @@
       }
     }
     .card-pic {
-      width: 100%;
+      width: 70%;
       border-radius: 6px;
       margin-top: 12px;
       box-shadow: 0 0 3px rgba(51, 51, 51, 0.342);
+      @media screen and(max-width: 590px) {
+        margin-left: 20px;
+        width: 80%;
+        // width: 85vw;
+      }
     }
     iframe {
       width: 100%;

@@ -28,4 +28,21 @@ mdp : commerconcommercon
 
 email : user@gmail.com
 mdp : useruser
-useruser
+
+const ALLOWED_ORIGINS = ['http://localhost:3000', '*']
+
+app.get('/private', function (req, res) {
+if (ALLOWED_ORIGINS.indexOf(req.headers.origin) > -1) {
+res.set('Access-Control-Allow-Credentials', 'true')
+res.set('Access-Control-Allow-Origin', req.headers.origin)
+} else {
+// allow other origins to make unauthenticated CORS requests
+res.set('Access-Control-Allow-Origin', '\*')
+}
+
+if (req.session.loggedIn === true) {
+res.send('THIS IS THE SECRET')
+} else {
+res.send('Please login first')
+}
+})

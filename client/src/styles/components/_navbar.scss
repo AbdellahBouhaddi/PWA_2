@@ -12,11 +12,11 @@ nav {
   }
 
   &::after {
-    content: "";
+    content: '';
     height: 45px;
     width: 110%;
     left: -20px;
-    top:0;
+    top: 0;
     position: absolute;
     backdrop-filter: blur(3px);
     background: rgba(255, 255, 255, 0.86);
@@ -31,11 +31,36 @@ nav {
     justify-content: space-between;
     height: 45px;
     align-items: center;
-    
+
+    .search {
+      display: flexbox;
+      width: 350px;
+
+      padding: 10px;
+      background-color: rgb(214, 219, 219);
+      margin-right: 50px;
+      justify-content: center;
+      font-size: 1.1rem;
+      padding-left: 15px;
+      font-weight: bold;
+
+      p {
+        padding-right: 3cm;
+      }
+      @media screen and(max-width: 590px) {
+        width: 300px;
+        position: relative;
+        padding: 12px 15px;
+        margin: 5px;
+        margin-bottom: 10px;
+        margin-left: -20px;
+      }
+    }
+
     .logo {
       display: flex;
       align-items: center;
-      
+
       h3 {
         transform: translate(15px, 2px);
         font-size: 1.5rem;
@@ -46,7 +71,7 @@ nav {
         width: 26px;
       }
     }
-    
+
     ul {
       display: flex;
       align-items: center;
@@ -54,21 +79,20 @@ nav {
       width: 35%;
       justify-content: space-between;
       font-size: 1.2rem;
-      
+
       .welcome {
         transform: translateY(2px);
 
         @media screen and(max-width: 590px) {
           display: none;
         }
-        
+
         h5 {
           font-family: $font-3;
         }
       }
-      
+
       li {
-        
         img {
           height: 24px;
           width: 24px;

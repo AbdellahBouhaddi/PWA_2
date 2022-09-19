@@ -1,10 +1,11 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import { UidContext } from './AppContext'
 import Logout from './Log/Logout'
 
 const Navbar = () => {
+  const [search, setsearch] = useState('')
   const uid = useContext(UidContext)
   const userData = useSelector((state) => state.userReducer)
   return (
@@ -17,7 +18,20 @@ const Navbar = () => {
               <h3>LIKIDI</h3>
             </div>
           </NavLink>
+          <div></div>
         </div>
+
+        <input
+        /*
+          className="search"
+          type="text"
+          id="TypeProduit"
+          Value={search}
+          placeholder="chercher la categorie du produit"
+          onChange={(e) => setsearch(e.target.value)}
+          value={search}
+          */
+        />
         {uid ? (
           <ul>
             <li></li>

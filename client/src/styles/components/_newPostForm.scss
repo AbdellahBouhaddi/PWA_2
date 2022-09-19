@@ -22,6 +22,10 @@
     @media screen and(max-width: 380px) {
       display: none;
     }
+    @media screen and(max-width: 590px) {
+      margin-left: 0px;
+      right: 20px;
+    }
 
     span {
       font-weight: bold;
@@ -46,15 +50,28 @@
     margin: 0 auto 0;
     .prixx {
       display: flexbox;
+
       padding: 10px;
       margin-right: 50px;
       font-size: 1.1rem;
       font-weight: bold;
+
       p {
         padding-right: 3cm;
       }
+      @media screen and(max-width: 590px) {
+        width: 500px;
+        margin-left: 100px;
+        padding-right: 0px;
+        display: block;
+      }
     }
     .prixxx {
+      @media screen and(max-width: 590px) {
+        width: 450px;
+        margin-left: 100px;
+        display: block;
+      }
       display: flexbox;
       padding: 1px;
       margin-right: 5px;
@@ -63,6 +80,9 @@
       p {
         padding-right: 5cm;
         display: block;
+        @media screen and(max-width: 590px) {
+          display: block;
+        }
       }
     }
     textarea {
@@ -71,11 +91,61 @@
       font-size: 1.4rem;
       padding: 12px 15px;
       border-radius: 20px 20px 6px 20px;
+      @media screen and(max-width: 590px) {
+        width: 300px;
+        padding: 12px 15px;
+
+        margin-left: -20px;
+      }
     }
+    .inputprix {
+      display: flexbox;
+      padding: 10px;
+      margin-right: 50px;
+      font-size: 1.1rem;
+      font-weight: bold;
+
+      p {
+        padding-right: 3cm;
+      }
+      @media screen and(max-width: 590px) {
+        width: 300px;
+        position: relative;
+        padding: 12px 15px;
+        margin: 5px;
+        margin-bottom: 10px;
+        margin-left: -20px;
+      }
+    }
+    .TypeProduit {
+      display: flexbox;
+      padding: 10px;
+      margin-top: 10px;
+      margin-right: 50px;
+      font-size: 1.1rem;
+      font-weight: bold;
+
+      p {
+        padding-right: 3cm;
+      }
+      @media screen and(max-width: 590px) {
+        width: 300px;
+        position: relative;
+        padding: 12px 15px;
+        margin: 5px;
+        margin-bottom: 10px;
+        margin-left: -20px;
+      }
+    }
+
     .card-container {
       background: $white;
       border-radius: 20px 20px 6px 20px;
-
+      @media screen and(max-width: 590px) {
+        width: 300px;
+        border-radius: 20px 20px 6px 20px;
+        margin: 0px;
+      }
       .card-left {
         text-align: left;
         img {
@@ -86,7 +156,7 @@
       }
       .card-right {
         @media screen and(max-width: 590px) {
-          margin-left: 0;
+          margin-left: -100px;
         }
         .card-header {
           @media screen and(max-width: 632px) {
@@ -96,6 +166,9 @@
             margin: 0;
           }
           .pseudo {
+            @media screen and(max-width: 590px) {
+              margin-left: 155px;
+            }
             @media screen and(max-width: 440px) {
               transform: translateY(-8px);
             }
@@ -125,6 +198,12 @@
             width: 100%;
             border-radius: 6px;
             margin-top: 12px;
+            @media screen and(max-width: 590px) {
+              width: 250px;
+              position: relative;
+              padding-right: 0px;
+              margin-left: -200px;
+            }
           }
           @media screen and(max-width: 632px) {
             margin-top: 20px;

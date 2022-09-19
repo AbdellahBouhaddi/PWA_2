@@ -23,7 +23,13 @@
       ul {
         justify-content: center;
         margin-right: 0px;
-        width: 90vw;
+        width: 85vw;
+        .card-container {
+          @media screen and(max-width: 590px) {
+            left: 20px;
+            width: 85vw;
+          }
+        }
       }
     }
   }

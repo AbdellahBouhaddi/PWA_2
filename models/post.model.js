@@ -33,6 +33,12 @@ const PostSchema = new mongoose.Schema(
     numero: {
       type: String,
     },
+    TypeProduit: {
+      type: String,
+    },
+    dateexpiration: {
+      type: String,
+    },
     comments: {
       type: [
         {

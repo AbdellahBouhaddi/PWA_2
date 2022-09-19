@@ -16,15 +16,31 @@ const Card = ({ post }) => {
   const [textUpdate, setTextUpdate] = useState(post.message)
   const [avUpdate, setAvUpdate] = useState(post.prixAv)
   const [apUpdate, setApUpdate] = useState(post.prixAp)
+  const [typePUpdate, setTypePUpdate] = useState(post.TypeProduit)
+  const [dateEUpdate, setDateEUpdate] = useState(post.dateexpiration)
   const [showComments, setShowComments] = useState(false)
 
   const updateItem = () => {
-    if (textUpdate || avUpdate || apUpdate) {
-      if (avUpdate !== '' && apUpdate !== '') {
-        dispatch(updatePost(post._id, textUpdate, avUpdate, apUpdate))
+    if (textUpdate || avUpdate || apUpdate || typePUpdate || dateEUpdate) {
+      if (
+        avUpdate !== '' &&
+        apUpdate !== '' &&
+        typePUpdate !== '' &&
+        dateEUpdate !== ''
+      ) {
+        dispatch(
+          updatePost(
+            post._id,
+            textUpdate,
+            avUpdate,
+            apUpdate,
+            typePUpdate,
+            dateEUpdate
+          )
+        )
 
         setIsUpdated(false)
-      } else alert('voulez entrer les deux prix ?')
+      } else alert('voulez entrer toutes les information  ?')
     }
   }
 
@@ -79,15 +95,20 @@ const Card = ({ post }) => {
                 <div className="prix">
                   <p className="prixx">
                     {' '}
-                    {'Prix avant : ' + post.prixAv + ' DA'}
+                    {'Prix avant : ' + post.prixAv + ',00 DA'}
                   </p>
                   <p className="prixx">
                     {' '}
-                    {'Prix aprés : ' + post.prixAp + ' DA'}
+                    {'Prix aprés : ' + post.prixAp + ',00 DA'}
                   </p>
                   <br />
                 </div>{' '}
                 <div className="prixxx">
+                  <p className="">
+                    {' '}
+                    <img src="./img/icons/exp.jpg" alt="edit" height={25} />
+                    {'     ' + post.dateexpiration}
+                  </p>
                   <p className="">
                     {' '}
                     <img src="./img/icons/hd.png" alt="edit" height={25} />
@@ -119,6 +140,22 @@ const Card = ({ post }) => {
                   defaultValue={post.prixAp}
                   onChange={(e) => setApUpdate(e.target.value)}
                 ></input>
+                <input
+                  className="TypeProduit"
+                  type="text"
+                  id="TypeProduit"
+                  Value={typePUpdate}
+                  placeholder="c'est quoi la categorie du produit"
+                  onChange={(e) => setTypePUpdate(e.target.value)}
+                />
+                <input
+                  className="TypeProduit"
+                  type="text"
+                  id="dateexpiration"
+                  Value={dateEUpdate}
+                  placeholder="Date d'expiration jj/mm/aaaa"
+                  onChange={(e) => setDateEUpdate(e.target.value)}
+                />
                 <div className="button-container">
                   <button className="btn" onClick={updateItem}>
                     valider modification
@@ -167,7 +204,7 @@ const Card = ({ post }) => {
               </div>
 
               <LikeButton post={post} />
-              <img src="./img/icons/share.svg" alt="share" />
+              <img src="./img/icons/Capture.PNG" alt="share" />
             </div>
             {showComments && <CardComments post={post} />}
           </div>

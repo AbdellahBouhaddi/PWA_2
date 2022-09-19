@@ -47,6 +47,8 @@ module.exports.createPost = async (req, res) => {
     numero: req.body.numero,
     prixAv: req.body.prixAv,
     prixAp: req.body.prixAp,
+    TypeProduit: req.body.TypeProduit,
+    dateexpiration: req.body.dateexpiration,
     picture: req.file !== null ? './uploads/posts/' + fileName : '',
     video: req.body.video,
     likers: [],
@@ -66,6 +68,8 @@ module.exports.updatePost = (req, res) => {
 
   const updatedRecord = {
     message: req.body.message,
+    TypeProduit: req.body.TypeProduit,
+    dateexpiration: req.body.dateexpiration,
     prixAv: req.body.prixAv,
     prixAp: req.body.prixAp,
   }
